@@ -88,3 +88,39 @@ action:
         Attenzione, i seguenti dispositivi risultano offline:
 
         - {{ state_attr('sensor.dispositivi_offline', 'elenco_nomi') | join('\n- ') }}
+```
+
+<details>
+<summary><b>Opzione B: Notifica Singola (Clicca per espandere)</b></summary>
+
+Ti avvisa una sola volta quando si verifica un guasto, rispettando i minuti di ritardo.
+
+```yaml
+alias: "Avviso - Dispositivi Offline"
+description: "Invia una singola notifica per i dispositivi offline."
+mode: restart
+trigger:
+  - platform: state
+    entity_id: sensor.dispositivi_offline
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+condition:
+  - condition: numeric_state
+    entity_id: sensor.dispositivi_offline
+    above: 0
+action:
+  - delay:
+      minutes: "{{ states('sensor.ritardo_notifica_dispositivi_offline') | int(5) }}"
+  - condition: numeric_state
+    entity_id: sensor.dispositivi_offline
+    above: 0
+  - service: notify.telegram # Sostituisci con il tuo servizio
+    data:
+      title: "⚠️ Allarme Dispositivi"
+      message: >
+        Attenzione, i seguenti dispositivi risultano offline:
+
+        - {{ state_attr('sensor.dispositivi_offline', 'elenco_nomi') | join('\n- ') }}
+```
