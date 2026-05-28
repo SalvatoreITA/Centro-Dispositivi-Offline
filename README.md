@@ -4,7 +4,7 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/SalvatoreITA/DomHouse-Printer-Card/blob/main/README.md)
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-v1.0.1-blue.svg)]()
+[![version](https://img.shields.io/badge/version-v1.0.0-blue.svg)]()
 [![maintainer](https://img.shields.io/badge/maintainer-Salvatore_Lentini_--_DomHouse.it-green.svg)](https://www.domhouse.it)
 
 **Centro Dispositivi Offline** è un Custom Component per Home Assistant estremamente leggero, ottimizzato e "intelligente". Ti permette di monitorare in tempo reale lo stato di connessione dei tuoi dispositivi (luci, prese, sensori, tapparelle, ecc.), generando sensori dinamici perfetti per creare dashboard di controllo e automazioni infallibili.
