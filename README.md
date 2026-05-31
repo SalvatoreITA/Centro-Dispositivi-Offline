@@ -51,37 +51,35 @@ L'integrazione genererà le seguenti entità pulite:
 | `sensor.ritardo_notifica_dispositivi_offline` | Timer (in minuti) da usare nelle automazioni | *Nessuno* |
 
 
-## 🤖 Automazioni Pronte all'Uso
+## 🤖 Automazione Consigliata
 
-Queste automazioni sono progettate per essere **infallibili**: sopravvivono ai riavvii di Home Assistant e ricalcolano i dispositivi in tempo reale.
+Per sfruttare al massimo il **Centro Dispositivi Offline**, è fondamentale configurare un'automazione che ti avvisi tempestivamente. 
 
-<details>
-<summary><b>Opzione A: Notifica Singola (Clicca per espandere)</b></summary>
+L'automazione seguente è progettata per essere **infallibile e dinamica**:
+* **Scatta ad ogni variazione:** Si attiva ogni volta che un dispositivo va offline (es. passando da 1 a 2, o da 2 a 3).
+* **Ritardo dinamico:** Legge automaticamente i minuti di tolleranza che hai impostato dall'interfaccia grafica (UI) dell'integrazione, evitando falsi allarmi se un dispositivo si riavvia velocemente.
+* **Modalità Restart:** Se durante il conto alla rovescia cade un altro dispositivo, il timer si azzera e riparte, inviandoti alla fine un'unica notifica pulita con l'elenco aggiornato.
 
-Ti avvisa una sola volta quando si verifica un guasto, rispettando i minuti di ritardo.
+### Codice YAML
+
+Copia e incolla questo codice in una nuova automazione, ricordandoti di sostituire `notify.telegram` con il servizio di notifica che utilizzi abitualmente (es. `notify.notify` per l'app ufficiale di Home Assistant).
 
 ```yaml
 alias: "Avviso - Dispositivi Offline"
-description: "Invia una singola notifica per i dispositivi offline."
+description: "Invia una notifica ad ogni cambio stato se i dispositivi rimangono offline per il tempo stabilito"
 mode: restart
 trigger:
   - platform: state
     entity_id: sensor.dispositivi_offline
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
+    for:
+      minutes: "{{ states('sensor.ritardo_notifica_dispositivi_offline') | int(5) }}"
 condition:
+  # Blocca l'invio della notifica se nel frattempo tutti i dispositivi sono tornati online (valore 0)
   - condition: numeric_state
     entity_id: sensor.dispositivi_offline
     above: 0
 action:
-  - delay:
-      minutes: "{{ states('sensor.ritardo_notifica_dispositivi_offline') | int(5) }}"
-  - condition: numeric_state
-    entity_id: sensor.dispositivi_offline
-    above: 0
-  - service: notify.telegram # Sostituisci con il tuo servizio
+  - service: notify.telegram # <-- INSERISCI QUI IL TUO SERVIZIO DI NOTIFICA
     data:
       title: "⚠️ Allarme Dispositivi"
       message: >
@@ -90,37 +88,3 @@ action:
         - {{ state_attr('sensor.dispositivi_offline', 'elenco_nomi') | join('\n- ') }}
 ```
 
-<details>
-<summary><b>Opzione B: Notifica Singola (Clicca per espandere)</b></summary>
-
-Ti avvisa una sola volta quando si verifica un guasto, rispettando i minuti di ritardo.
-
-```yaml
-alias: "Avviso - Dispositivi Offline"
-description: "Invia una singola notifica per i dispositivi offline."
-mode: restart
-trigger:
-  - platform: state
-    entity_id: sensor.dispositivi_offline
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
-condition:
-  - condition: numeric_state
-    entity_id: sensor.dispositivi_offline
-    above: 0
-action:
-  - delay:
-      minutes: "{{ states('sensor.ritardo_notifica_dispositivi_offline') | int(5) }}"
-  - condition: numeric_state
-    entity_id: sensor.dispositivi_offline
-    above: 0
-  - service: notify.telegram # Sostituisci con il tuo servizio
-    data:
-      title: "⚠️ Allarme Dispositivi"
-      message: >
-        Attenzione, i seguenti dispositivi risultano offline:
-
-        - {{ state_attr('sensor.dispositivi_offline', 'elenco_nomi') | join('\n- ') }}
-```
