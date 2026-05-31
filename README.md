@@ -92,7 +92,7 @@ action:
 
 Per goderti un'esperienza visiva spettacolare su Lovelace, ho sviluppato una **Card custom** progettata appositamente per questa integrazione, dotata di grafica in stile Glassmorphism e un popup nativo interattivo.
 
-👉 **[Scarica la Card per Lovelace cliccando qui](INSERIRE_URL_DELLA_REPO_DELLA_CARD_QUI)**
+👉 **[Scarica la Card per Lovelace cliccando qui](https://github.com/SalvatoreITA/Centro-Dispositivi-Offline-Card)**
 
 ## ☕ Supporta il Progetto
 
