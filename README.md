@@ -51,7 +51,7 @@ L'integrazione genererà le seguenti entità pulite:
 | `sensor.ritardo_notifica_dispositivi_offline` | Timer (in minuti) da usare nelle automazioni | *Nessuno* |
 
 
-## 🤖 Automazione Consigliata
+## 🤖 Automazione
 
 Per sfruttare al massimo il **Centro Dispositivi Offline**, è fondamentale configurare un'automazione che ti avvisi tempestivamente. 
 
@@ -88,3 +88,17 @@ action:
         - {{ state_attr('sensor.dispositivi_offline', 'elenco_nomi') | join('\n- ') }}
 ```
 
+## 🎨 Frontend (Dashboard)
+
+Per goderti un'esperienza visiva spettacolare su Lovelace, ho sviluppato una **Card custom** progettata appositamente per questa integrazione, dotata di grafica in stile Glassmorphism e un popup nativo interattivo.
+
+👉 **[Scarica la Card per Lovelace cliccando qui](INSERIRE_URL_DELLA_REPO_DELLA_CARD_QUI)**
+
+## ☕ Supporta il Progetto
+
+Ogni piccolo supporto fa un'enorme differenza: mi aiuta a mantenere vivo l'entusiasmo e mi stimola a creare e condividere nuove soluzioni per la community. Grazie di cuore per il tuo aiuto! 🚀
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/salvatore_dh)
+
+## ❤️ Crediti
+Sviluppato da [Salvatore Lentini - DomHouse.it](https://www.domhouse.it)
