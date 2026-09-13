@@ -1,7 +1,7 @@
 {
   "domain": "centro_offline",
   "name": "Centro Dispositivi Offline",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "documentation": "https://www.domhouse.it",
   "dependencies": [],
   "codeowners": ["@SalvatoreITA"],
