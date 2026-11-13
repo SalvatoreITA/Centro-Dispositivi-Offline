@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure Offline Devices Center",
+        "description": "Pick entities from the dropdown or paste a bulk list. Every entity type is supported: switch, light, sensor, binary_sensor, cover, climate, lock, media_player and more.",
+        "data": {
+          "dispositivi": "Select devices manually",
+          "yaml_import": "Bulk YAML import (paste the list here)",
+          "ritardo": "Notification delay (minutes)"
+        }
+      }
+    },
+    "error": {
+      "no_entities": "No valid entity found in the pasted text (e.g. light.kitchen, sensor.temperature)."
+    },
+    "abort": {
+      "single_instance_allowed": "The integration is already configured. Use Options to change it."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Edit devices and delay",
+        "description": "Add/remove devices from the dropdown, or paste new ones in the YAML box below.",
+        "data": {
+          "dispositivi": "Currently monitored devices",
+          "yaml_import": "Bulk YAML add (paste and save)",
+          "ritardo": "Notification delay (minutes)"
+        }
+      }
+    },
+    "error": {
+      "no_entities": "No valid entity found in the pasted text (e.g. light.kitchen, sensor.temperature)."
+    }
+  }
+}

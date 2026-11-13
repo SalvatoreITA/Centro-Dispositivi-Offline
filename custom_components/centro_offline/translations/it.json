@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configura Centro Dispositivi Offline",
+        "description": "Seleziona dal menu a tendina oppure incolla una lista massiva. Vengono rilevati offline tutti i tipi di entità: switch, light, sensor, binary_sensor, cover, climate, lock, media_player e così via.",
+        "data": {
+          "dispositivi": "Seleziona i dispositivi a mano",
+          "yaml_import": "Importazione Massiva YAML (Incolla qui la lista)",
+          "ritardo": "Ritardo per la notifica (minuti)"
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "L'integrazione è già configurata. Vai nelle Opzioni per modificarla."
+    },
+    "error": {
+      "no_entities": "Nel testo incollato non è stata trovata nessuna entità valida (es. light.cucina, sensor.temperatura)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Modifica Dispositivi e Ritardo",
+        "description": "Seleziona/rimuovi i dispositivi dal menu a tendina o aggiungine di nuovi incollandoli nella casella YAML qui sotto.",
+        "data": {
+          "dispositivi": "Dispositivi attualmente monitorati",
+          "yaml_import": "Aggiungi Massivamente YAML (Incolla e salva)",
+          "ritardo": "Ritardo per la notifica (minuti)"
+        }
+      }
+    },
+    "error": {
+      "no_entities": "Nel testo incollato non è stata trovata nessuna entità valida (es. light.cucina, sensor.temperatura)."
+    }
+  }
+}
